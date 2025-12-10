@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AL-Fees Icon Generator</title>
+    <style>
+        body { font-family: Arial; padding: 20px; text-align: center; }
+        .icon-container { 
+            width: 256px; height: 256px; 
+            margin: 20px auto; 
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        button { 
+            padding: 15px 30px; 
+            font-size: 16px; 
+            background: #2196F3; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover { background: #1976D2; }
+        .instructions { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            text-align: left; 
+            background: #f5f5f5; 
+            padding: 20px; 
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AL-Fees School Management System</h1>
+    <h2>Icon Generator</h2>
+    
+    <div class="icon-container" id="iconPreview">
+        AL
+    </div>
+    
+    <button onclick="downloadIcon()">Download Icon</button>
+    <button onclick="changeStyle()">Change Style</button>
+    
+    <div class="instructions">
+        <h3>How to use this icon:</h3>
+        <ol>
+            <li>Click "Download Icon" to save the icon image</li>
+            <li>Run the PowerShell script: <code>create-shortcuts.ps1</code></li>
+            <li>Right-click on the desktop shortcut → Properties</li>
+            <li>Click "Change Icon" and browse to the downloaded icon</li>
+            <li>Click OK to apply the custom icon</li>
+        </ol>
+        
+        <h3>Alternative method:</h3>
+        <p>If you have your own school logo, you can convert it to an ICO file using online converters like favicon.io or convertio.co, then use it as your custom icon.</p>
+    </div>
+
+    <script>
+        let styleIndex = 0;
+        const styles = [
+            { bg: 'linear-gradient(45deg, #2196F3, #21CBF3)', text: 'AL' },
+            { bg: 'linear-gradient(45deg, #4CAF50, #8BC34A)', text: 'AL' },
+            { bg: 'linear-gradient(45deg, #FF9800, #FFC107)', text: 'AL' },
+            { bg: 'linear-gradient(45deg, #9C27B0, #E91E63)', text: 'AL' },
+            { bg: 'linear-gradient(45deg, #F44336, #E91E63)', text: '🎓' }
+        ];
+
+        function changeStyle() {
+            styleIndex = (styleIndex + 1) % styles.length;
+            const icon = document.getElementById('iconPreview');
+            icon.style.background = styles[styleIndex].bg;
+            icon.textContent = styles[styleIndex].text;
+        }
+
+        function downloadIcon() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 256;
+            canvas.height = 256;
+
+            const currentStyle = styles[styleIndex];
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, 256, 256);
+            if (currentStyle.bg.includes('2196F3')) {
+                gradient.addColorStop(0, '#2196F3');
+                gradient.addColorStop(1, '#21CBF3');
+            } else if (currentStyle.bg.includes('4CAF50')) {
+                gradient.addColorStop(0, '#4CAF50');
+                gradient.addColorStop(1, '#8BC34A');
+            } else if (currentStyle.bg.includes('FF9800')) {
+                gradient.addColorStop(0, '#FF9800');
+                gradient.addColorStop(1, '#FFC107');
+            } else if (currentStyle.bg.includes('9C27B0')) {
+                gradient.addColorStop(0, '#9C27B0');
+                gradient.addColorStop(1, '#E91E63');
+            } else {
+                gradient.addColorStop(0, '#F44336');
+                gradient.addColorStop(1, '#E91E63');
+            }
+
+            // Draw rounded rectangle
+            const radius = 20;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, 256, 256, radius);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Draw text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowOffsetX = 2;
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 4;
+            ctx.fillText(currentStyle.text, 128, 128);
+
+            // Download
+            const link = document.createElement('a');
+            link.download = 'al-fees-icon.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
