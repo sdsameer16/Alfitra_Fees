@@ -149,17 +149,40 @@ const FeeReceipt = () => {
                       width: 80, 
                       height: 80, 
                       margin: '0 auto 10px',
-                      border: '2px solid #000',
-                      borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: '#f5f5f5'
+                      justifyContent: 'center'
                     }}
                   >
-                    <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                      AF
-                    </Typography>
+                    <img 
+                      src="/logo&Stmp.png" 
+                      alt="AL-FITRAH School Logo" 
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'contain' 
+                      }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <Box 
+                      sx={{ 
+                        width: 80, 
+                        height: 80,
+                        border: '2px solid #000',
+                        borderRadius: '50%',
+                        display: 'none',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#f5f5f5'
+                      }}
+                    >
+                      <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                        AF
+                      </Typography>
+                    </Box>
                   </Box>
                   <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 0.5 }}>
                     AL-FITRAH E.M HIGH SCHOOL
@@ -332,14 +355,30 @@ const FeeReceipt = () => {
                   </Typography>
                   <Box sx={{ display: 'inline-block', textAlign: 'center', mt: 5 }}>
                     <Box sx={{ 
-                      border: '1px dashed #999', 
-                      padding: '10px 20px', 
                       minWidth: '150px',
                       minHeight: '80px',
-                      mb: 1
+                      mb: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}>
-                      <Typography variant="caption" color="text.secondary">
-                        Principal Signature & Stamp
+                      <img 
+                        src="/logo&Stmp.png" 
+                        alt="School Stamp" 
+                        style={{ 
+                          maxWidth: '150px', 
+                          maxHeight: '80px',
+                          objectFit: 'contain'
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.parentElement.style.border = '1px dashed #999';
+                          e.target.parentElement.style.padding = '10px 20px';
+                        }}
+                      />
+                      <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+                        Principal
                       </Typography>
                     </Box>
                   </Box>
