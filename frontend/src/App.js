@@ -18,7 +18,6 @@ import PrivateRoute from './components/common/PrivateRoute';
 
 // Auth Pages
 import Login from './components/auth/Login';
-import Register from './components/auth/Register';
 
 // Student Pages
 import Dashboard from './components/dashboard/Dashboard';
@@ -46,7 +45,6 @@ function App() {
               <Routes>
                 {/* Public Routes */}
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
 
                 {/* Protected Routes */}
                 <Route

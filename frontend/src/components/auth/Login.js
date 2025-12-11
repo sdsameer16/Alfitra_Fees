@@ -123,11 +123,9 @@ const Login = () => {
               {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             <Box sx={{ textAlign: 'center' }}>
-              <Link to="/register" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="primary">
-                  Don't have an account? Sign Up
-                </Typography>
-              </Link>
+              <Typography variant="body2" color="text.secondary">
+                Need an account? Contact administrator
+              </Typography>
             </Box>
           </Box>
         </Paper>
